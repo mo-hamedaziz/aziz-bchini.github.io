@@ -14,7 +14,7 @@ const Hero = () => {
           </h5>
         </Col>
         <Col sm={4} className="photo">
-          <img src="/src/assets/hero.png" alt="photo" />
+          <img src="hero.png" alt="photo" />
         </Col>
       </Row>
     </Container>
