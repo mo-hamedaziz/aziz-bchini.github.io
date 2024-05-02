@@ -15,6 +15,7 @@ const App = () => {
   return (
     <div className="app">
       <div className="header">
+        <h2>Mohamed Aziz Bchini</h2>
         <img src="/assets/your-profile-photo.jpg" alt="Your Name" />
         <SocialLinks />
         <button onClick={handleDownloadResume}>Download Resume PDF</button>
