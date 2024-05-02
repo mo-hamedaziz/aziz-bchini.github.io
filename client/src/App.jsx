@@ -1,33 +1,22 @@
-import React from "react";
-import AboutMe from "./components/AboutMe";
-import ContactMe from "./components/ContactMe";
-import Certificates from "./components/Certifs";
-import Experience from "./components/Exp";
-import Projects from "./components/Projects";
-import Skills from "./components/Skills";
-import SocialLinks from "./components/SocialLinks";
+import styles from "./App.module.css";
+import { About } from "./components/About/About";
+import { Contact } from "./components/Contact/Contact";
+import { Experience } from "./components/Experience/Experience";
+import { Hero } from "./components/Hero/Hero";
+import { Navbar } from "./components/Navbar/Navbar";
+import { Projects } from "./components/Projects/Projects";
 
-const App = () => {
-  const handleDownloadResume = () => {
-    // Implement your logic to download the resume PDF
-    alert("Download functionality is not implemented yet.");
-  };
+function App() {
   return (
-    <div className="app">
-      <div className="header">
-        <h2>Mohamed Aziz Bchini</h2>
-        <img src="/assets/your-profile-photo.jpg" alt="Your Name" />
-        <SocialLinks />
-        <button onClick={handleDownloadResume}>Download Resume PDF</button>
-      </div>
-      <AboutMe />
-      <Skills />
-      <Projects />
+    <div className={styles.App}>
+      <Navbar />
+      <Hero />
+      <About />
       <Experience />
-      <Certificates />
-      <ContactMe />
+      <Projects />
+      <Contact />
     </div>
   );
-};
+}
 
 export default App;
