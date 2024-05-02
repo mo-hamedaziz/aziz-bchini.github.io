@@ -1,35 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import AboutMe from "./components/AboutMe";
+import ContactMe from "./components/ContactMe";
+import Certificates from "./components/Certifs";
+import Experience from "./components/Exp";
+import Projects from "./components/Projects";
+import Skills from "./components/Skills";
+import SocialLinks from "./components/SocialLinks";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+const App = () => {
+  const handleDownloadResume = () => {
+    // Implement your logic to download the resume PDF
+    alert("Download functionality is not implemented yet.");
+  };
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="app">
+      <div className="header">
+        <img src="/assets/your-profile-photo.jpg" alt="Your Name" />
+        <SocialLinks />
+        <button onClick={handleDownloadResume}>Download Resume PDF</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+      <AboutMe />
+      <Skills />
+      <Projects />
+      <Experience />
+      <Certificates />
+      <ContactMe />
+    </div>
+  );
+};
 
-export default App
+export default App;
