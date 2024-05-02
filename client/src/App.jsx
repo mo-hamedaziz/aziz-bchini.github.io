@@ -1,22 +1,12 @@
-import styles from "./App.module.css";
-import { About } from "./components/About/About";
-import { Contact } from "./components/Contact/Contact";
-import { Experience } from "./components/Experience/Experience";
-import { Hero } from "./components/Hero/Hero";
-import { Navbar } from "./components/Navbar/Navbar";
-import { Projects } from "./components/Projects/Projects";
+import './App.css';
 
 function App() {
+
   return (
-    <div className={styles.App}>
-      <Navbar />
-      <Hero />
-      <About />
-      <Experience />
-      <Projects />
-      <Contact />
-    </div>
-  );
+    <>
+      <h1>Aziz Bchini portfolio</h1>
+    </>
+  )
 }
 
-export default App;
+export default App
