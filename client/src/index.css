@@ -1,53 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap");
+
 body {
-    background-color: #070F2B;
+  background-color: #070f2b;
+  font-family: "Montserrat", sans-serif;
 }
 
 .navbar {
-    background-color: #0c1331 !important;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+  background-color: #0c1331 !important;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
 
 .navbar .nav-link {
-    color: #ecf6f9;
-    font-weight: bold;
-    margin: 8px 12px;
-    border-bottom: solid #0c1331 4px;
-    transition: border-bottom 0.3s ease;
+  color: #ecf6f9;
+  font-weight: bold;
+  margin: 8px 12px;
+  border-bottom: solid #0c1331 4px;
+  transition: border-bottom 0.3s ease;
 }
 
 .navbar .nav-link:hover {
-    border-bottom: solid #ecf6f9 4px;
+  border-bottom: solid #ecf6f9 4px;
 }
 
 .hero .text {
-    color: #ecf6f9;
+  color: #ecf6f9;
 }
 
 .hero .text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero .text h2 {
+  margin: 20px 0;
+  font-weight: bold;
+  font-size: 4em;
 }
 
 .hero .photo img {
-    margin: 50px;
-    width: 80%;
-    position: relative;
-    animation: moveUpDown 3s ease infinite alternate;
+  margin: 50px;
+  width: 80%;
+  position: relative;
+  animation: moveUpDown 3s ease infinite alternate;
 }
+
+.social-media a {
+  text-decoration: none;
+}
+
+.social-media .icon {
+  margin: 12px 8px;
+  color: #ecf6f9;
+}
+
+.social-media .icon:hover, .download-btn button:hover{
+  transform: translateY(-5px);
+  transition: 1s ease;
+}
+
+.download-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.download-btn button {
+  background-color: #535C91;
+  width: fit-content;
+  padding: 8px 12px;
+  margin: 8px;
+  border: none;
+  border-radius: 24px;
+  color: #ecf6f9;
+  font-size: 1.25em;
+  box-shadow: 4px 4px 2px #1B1A5590;
+}
+
+
+
+
+
 
 
 
 
 
 @keyframes moveUpDown {
-    0% {
-        transform: translateY(0); 
-    }
-    100% {
-        transform: translateY(-10px); 
-    }
-    0% {
-        transform: translateY(10px); 
-    }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+  0% {
+    transform: translateY(10px);
+  }
 }
