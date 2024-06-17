@@ -11,11 +11,11 @@ import useTypeWriter from "../hooks/useTypeWriter";
 
 const Hero = () => {
   const handleDownload = () => {
-    const filePath = 'resumeCyberSec.pdf';
+    const filePath = "resumeCyberSec.pdf";
 
-    const downloadLink = document.createElement('a');
+    const downloadLink = document.createElement("a");
     downloadLink.href = filePath;
-    downloadLink.download = 'aziz_bchini_resume.pdf';
+    downloadLink.download = "aziz_bchini_resume.pdf";
 
     document.body.appendChild(downloadLink);
 
@@ -24,8 +24,12 @@ const Hero = () => {
     document.body.removeChild(downloadLink);
   };
 
+  const handleSendMail = () => {
+    window.location.href = "mailto:mohamedaziz.bchini@insat.ucar.tn";
+  };
+
   const displayText = useTypeWriter(
-    "Cybersecurity Enthusiast | CTF Player | Computer Networks and Telecommunications Engineering student - INSAT",
+    "Cybersecurity Enthusiast | CTF Player | THM top 7% | Computer Networks and Telecommunications Engineering student - INSAT",
     10
   );
 
@@ -35,57 +39,62 @@ const Hero = () => {
         <Col sm={8} className="text">
           <h2>Hi, I'm Aziz Bchini !</h2>
           <h5>{displayText}</h5>
-          <Row>
-            <Col className="social-media">
+          <Row className="social-media">
+            {/* <Col>
               <a
                 href="mailto:mohamedaziz.bchini@insat.ucar.tn"
                 target="_blank"
                 title="Email"
               >
-                <HiMail className="icon" size="3em" />
+                <HiMail className="icon" size="2em" />
               </a>
+            </Col> */}
+            <Col>
               <a
                 href="https://www.linkedin.com/in/mohamed-aziz-bchini/"
                 target="_blank"
                 title="LinkedIn"
               >
-                <FaLinkedin className="icon" size="3em" />
+                <FaLinkedin className="icon" size="2em" />
               </a>
+            </Col>
+            <Col>
               <a
                 href="https://github.com/mo-hamedaziz"
                 target="_blank"
                 title="GitHub"
               >
-                <FaGithub className="icon" size="3em" />
+                <FaGithub className="icon" size="2em" />
               </a>
+            </Col>
+            <Col>
               <a
                 href="https://medium.com/@mohamedaziz0801"
                 target="_blank"
                 title="Medium"
               >
-                <FaMedium className="icon" size="3em" />
+                <FaMedium className="icon" size="2em" />
               </a>
-              {/* <a href="#" target="_blank" title="GitBook">
-              <SiGitbook className="icon" size="3em" />
-            </a> */}
+            </Col>
+            <Col>
               <a
                 href="https://tryhackme.com/p/mohamedaziz"
                 target="_blank"
                 title="TryHackMe"
               >
-                <SiTryhackme className="icon" size="3em" />
+                <SiTryhackme className="icon" size="2em" />
               </a>
-              {/* <a
-              href="#"
-              target="_blank"
-              title="UpWork"
-            >
-              <FaUpwork className="icon" size="3em" />
-            </a> */}
             </Col>
-            <Col className="download-btn">
+          </Row>
+          <Row className="intro-ctrl-btns">
+            <Col className="email-me-btn">
+              <button onClick={handleSendMail}>
+                <HiMail className="icon" size="1em" /> Email Me
+              </button>
+            </Col>
+            <Col className="download-resume-btn">
               <button onClick={handleDownload}>
-                Resume <HiDownload size="1em"/>
+                <HiDownload className="icon" size="1em" /> Resume
               </button>
             </Col>
           </Row>
