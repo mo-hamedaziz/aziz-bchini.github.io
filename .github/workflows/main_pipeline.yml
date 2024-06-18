@@ -1,45 +1,56 @@
 name: CICD_Actions
-on: push
+
+on: 
+  push:
+    branches:
+      - main
+
 jobs:
-  # Build Job
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Install Node
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20.x
 
       - name: Install Dependencies
         run: npm install
-        working-directory: ./client
 
       - name: Build Project
         run: npm run build
-        working-directory: ./client
 
-      - name: Upload artifact to enable deployment
+      - name: Upload Production Files
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: ./client/dist
-  # Deploy Job
-  deploy:
-  
-    needs: build
+          path: dist
 
+    outputs:
+      artifact-path: dist
+
+  deploy:
+    needs: build
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./client
+
     steps:
-      - name: Download artifact
+      - name: Download Production Files
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: ./client/dist
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: ./client/dist
+          publish_dir: ${{ needs.build.outputs.artifact-path }}
