@@ -4,13 +4,15 @@ on:
   push:
     branches:
       - main
+      - 'release/*'
+  pull_request:
+    branches:
+      - main
 
 jobs:
+  # Build Job
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./client
 
     steps:
       - name: Checkout Code
@@ -21,34 +23,40 @@ jobs:
         with:
           node-version: 20.x
 
-      - name: Install Dependencies
-        run: npm install
+      - name: Cache Node.js modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Build Project
-        run: npm run build
+      - name: Install Dependencies and Build Project
+        run: |
+          cd client
+          npm install
+          npm run build
 
-      - name: Upload Production Files
+      - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: dist/
+          path: ./client/dist
 
+  # Deploy Job
   deploy:
     needs: build
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Download Production Files
+      - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: dist/
+          path: ./client/dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: dist/
+          publish_dir: ./client/dist
