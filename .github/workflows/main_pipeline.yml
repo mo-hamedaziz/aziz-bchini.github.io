@@ -33,7 +33,6 @@ jobs:
 
       - name: Install Dependencies and Build Project
         run: |
-          cd client
           npm install
           npm run build
 
@@ -41,7 +40,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: production-files
-          path: ./client/dist
+          path: ./dist
 
   # Deploy Job
   deploy:
@@ -53,10 +52,10 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: ./client/dist
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-          publish_dir: ./client/dist
+          publish_dir: ./dist
