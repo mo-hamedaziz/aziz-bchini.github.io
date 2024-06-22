@@ -10,10 +10,8 @@ on:
       - main
 
 jobs:
-  # Build Job
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
@@ -21,20 +19,17 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.x
+          node-version: '20.x'
+          cache: 'npm'
 
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+      - name: Install Dependencies
+        run: npm install
 
-      - name: Install Dependencies and Build Project
-        run: |
-          npm install
-          npm run build
+      - name: Build Project
+        run: npm run build
+        env:
+          # Ensure the VITE_PUBLIC_PATH is set correctly if your project is hosted in a subdirectory
+          VITE_PUBLIC_PATH: '/mo-hamedaziz.github.io/'
 
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v3
@@ -42,17 +37,15 @@ jobs:
           name: production-files
           path: ./dist
 
-  # Deploy Job
   deploy:
     needs: build
     runs-on: ubuntu-latest
-
+    if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/heads/release/')
     steps:
       - name: Download artifact
         uses: actions/download-artifact@v3
         with:
           name: production-files
-          path: ./dist
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
