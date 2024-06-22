@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Hero from "../assets/hero.png";
-import ParticleEffect from "./ParticleEffect";
-import Intro from "./Intro";
-import TypingEffect from "./TypingEffect";
+import ParticleEffect from "../components/ParticleEffect";
+import Intro from "../components/Home/Intro";
+import TypingEffect from "../components/Home/TypingEffect";
 
 const Home = () => {
   return (

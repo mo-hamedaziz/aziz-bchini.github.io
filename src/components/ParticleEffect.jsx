@@ -14,10 +14,6 @@ const ParticleEffect = () => {
     });
   }, []);
 
-  const particlesLoaded = (container) => {
-    console.log(container);
-  };
-
   const options = useMemo(
     () => ({
       background: {
@@ -96,7 +92,7 @@ const ParticleEffect = () => {
   return (
     <Particles
       id="tsparticles"
-      particlesLoaded={particlesLoaded}
+      // particlesLoaded={particlesLoaded}
       options={options}
     />
   );
